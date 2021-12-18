@@ -1,7 +1,12 @@
+import { CssBaseline } from '@material-ui/core';
+
+import { Album } from './Album';
+
 export function App() {
   return (
-    <div className="App">
-      App
-    </div>
+    <>
+      <CssBaseline />
+      <Album />
+    </>
   );
 }
