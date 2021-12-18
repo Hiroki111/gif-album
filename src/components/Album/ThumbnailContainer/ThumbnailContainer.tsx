@@ -10,7 +10,6 @@ import { Pagination } from '../../../interfaces/GetTrendingDto';
 
 export function ThumbnailContainer() {
   const classes = useStyles();
-  const [loadingGifs, setLoadingGifs] = useState<boolean>(false);
   const [isLoadingGifsFailed, setIsLoadingGifsFailed] = useState<boolean>(false);
   const [nextGifIndex, setNextGifIndex] = useState<number>(0);
   const [gifs, setGifs] = useState<Gif[]>([]);
@@ -25,7 +24,6 @@ export function ThumbnailContainer() {
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   async function fetchGifs() {
-    setLoadingGifs(true);
     try {
       const getTrendingDto = await restApi.fetchGifs(nextGifIndex);
       const gifsSet = new Set([...gifs, ...getTrendingDto.data]);
@@ -36,7 +34,6 @@ export function ThumbnailContainer() {
       setIsLoadingGifsFailed(true);
       alert('Internal error occurred');
     }
-    setLoadingGifs(false);
   }
 
   return (
@@ -45,7 +42,6 @@ export function ThumbnailContainer() {
       next={fetchGifs}
       hasMore={hasMore}
       loader={isLoadingGifsFailed ? null : <h4 className={classes.loading}>Loading...</h4>}
-      endMessage={loadingGifs ? null : <p className={classes.endMessage}>This is the end of album</p>}
     >
       <Container maxWidth="md" className={classes.container}>
         <Grid container spacing={4}>
