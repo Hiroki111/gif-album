@@ -1,4 +1,5 @@
 import { AppBar, Toolbar, Typography } from '@material-ui/core';
+
 import { ThumbnailContainer } from './ThumbnailContainer';
 
 export function Album() {

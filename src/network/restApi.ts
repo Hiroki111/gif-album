@@ -3,7 +3,7 @@ import axios, { AxiosResponse } from 'axios';
 import { GetTrendingDto } from '../interfaces/GetTrendingDto';
 
 const GIFS_TRENDING_URL = 'https://api.giphy.com/v1/gifs/trending';
-const GIFS_TRENDING_SIZE = '30';
+export const GIFS_TRENDING_SIZE = 50;
 const GIFS_TRENDING_INITIAL_OFFSET = 0;
 
 const restApi = {
