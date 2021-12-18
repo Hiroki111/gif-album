@@ -1,19 +1,17 @@
+import axios, { AxiosResponse } from 'axios';
+
 import { GetTrendingDto } from '../interfaces/GetTrendingDto';
 
+const GIFS_TRENDING_URL = 'https://api.giphy.com/v1/gifs/trending';
+const GIFS_TRENDING_SIZE = '30';
+
 const restApi = {
-  // TODO: replace new Promise with actual data
   fetchGifs: async function (): Promise<GetTrendingDto> {
-    return new Promise((resolve) =>
-      setTimeout(
-        () =>
-          resolve({
-            data: [{ id: 'test', title: 'Test Gif obj' }],
-            pagination: {},
-            meta: {},
-          }),
-        500,
-      ),
-    );
+    const res: AxiosResponse<GetTrendingDto> = await axios({
+      method: 'GET',
+      url: `${GIFS_TRENDING_URL}?api_key=${process.env.REACT_APP_GIPHY_APi_KEY}&limit=${GIFS_TRENDING_SIZE}`,
+    });
+    return res.data;
   },
 };
 
