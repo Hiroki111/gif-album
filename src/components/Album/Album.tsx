@@ -1,17 +1,20 @@
-import { AppBar, Card, CardMedia, Container, Grid, Toolbar, Typography } from '@material-ui/core';
+import { AppBar, Container, Grid, Toolbar, Typography } from '@material-ui/core';
 
+import { useFetchGifsQuery } from '../../queries/gif';
+import { ThumbnailGrid } from './ThumbnailGrid';
 import { useStyles } from './useStyles';
 
 export function Album() {
   const classes = useStyles();
 
-  const gifs = [{ id: 1 }];
+  const fetchGifsQuery = useFetchGifsQuery();
+  const gifs = fetchGifsQuery.data || [];
 
   return (
     <>
       <AppBar position="relative">
         <Toolbar>
-          <Typography variant="h6" color="inherit" noWrap>
+          <Typography variant="h6" noWrap>
             Gif Album
           </Typography>
         </Toolbar>
@@ -19,11 +22,7 @@ export function Album() {
       <Container maxWidth="md" className={classes.container}>
         <Grid container spacing={4}>
           {gifs.map((gif) => (
-            <Grid item key={gif.id} xs={12} sm={6} md={4}>
-              <Card className={classes.gifCard}>
-                <CardMedia className={classes.thumbnail} image="url" title="Image title" />
-              </Card>
-            </Grid>
+            <ThumbnailGrid key={gif.id} gif={gif} />
           ))}
         </Grid>
       </Container>
