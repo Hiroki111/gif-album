@@ -13,7 +13,7 @@ export function ThumbnailGrid({ gif }: Props) {
   return (
     <Grid item key={gif.id} xs={12} sm={6} md={4}>
       <Card className={classes.gifCard}>
-        <CardMedia className={classes.thumbnail} image="url" title={gif.title} />
+        <CardMedia className={classes.thumbnail} image={gif.images.downsized_still.url} title={gif.title} />
       </Card>
     </Grid>
   );
