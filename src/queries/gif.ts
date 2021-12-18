@@ -8,8 +8,8 @@ export enum gifQuery {
   fetchGifs = 'fetchGifs',
 }
 
-export function useFetchGifsQuery(): UseQueryResult<Gif[]> {
-  return useQuery(gifQuery.fetchGifs, restApi.fetchGifs, {
+export function useFetchGifsQuery(offset?: number): UseQueryResult<Gif[]> {
+  return useQuery(gifQuery.fetchGifs, () => restApi.fetchGifs(offset), {
     select: (trendingDto: GetTrendingDto) => trendingDto.data,
   });
 }
