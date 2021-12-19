@@ -1,6 +1,7 @@
 import { AppBar, Toolbar, Typography } from '@material-ui/core';
 
 import { Footer } from './Footer';
+import { GifModal } from './GifModal';
 import { ThumbnailContainer } from './ThumbnailContainer';
 import { useStyles } from './useStyles';
 
@@ -17,6 +18,7 @@ export function Album() {
         </Toolbar>
       </AppBar>
       <ThumbnailContainer />
+      <GifModal />
       <Footer />
     </div>
   );

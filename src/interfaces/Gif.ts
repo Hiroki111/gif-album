@@ -1,4 +1,3 @@
-// NOTE: Update this as needed
 export interface Gif {
   id: string;
   title: string;
@@ -6,6 +5,11 @@ export interface Gif {
 }
 
 interface Images {
+  original: {
+    height: string;
+    width: string;
+    url: string;
+  };
   downsized_still: {
     height: string;
     width: string;
