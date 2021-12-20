@@ -1,5 +1,4 @@
-import { AppBar, Toolbar, Typography } from '@material-ui/core';
-
+import { NavBar } from './NavBar';
 import { Footer } from './Footer';
 import { GifModal } from './GifModal';
 import { ThumbnailContainer } from './ThumbnailContainer';
@@ -10,13 +9,7 @@ export function Album() {
 
   return (
     <div className={classes.root}>
-      <AppBar position="relative">
-        <Toolbar>
-          <Typography variant="h6" noWrap>
-            Gif Album
-          </Typography>
-        </Toolbar>
-      </AppBar>
+      <NavBar />
       <ThumbnailContainer />
       <GifModal />
       <Footer />

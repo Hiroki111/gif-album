@@ -3,16 +3,15 @@ import { useEffect, useState } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
 
 import restApi, { GIFS_TRENDING_SIZE } from '../../../network/restApi';
-import { Gif } from '../../../interfaces/Gif';
 import { ThumbnailGrid } from '../ThumbnailGrid';
 import { useStyles } from './useStyles';
-import { Pagination } from '../../../interfaces/GetTrendingDto';
+import { GetTrendingDto, Pagination } from '../../../interfaces/GetTrendingDto';
+import { useAlbumContext } from '../../../contexts/AlbumContext';
 
 export function ThumbnailContainer() {
   const classes = useStyles();
+  const { searchKeyword, gifs, setGifs, nextGifIndex, setNextGifIndex } = useAlbumContext();
   const [isLoadingGifsFailed, setIsLoadingGifsFailed] = useState<boolean>(false);
-  const [nextGifIndex, setNextGifIndex] = useState<number>(0);
-  const [gifs, setGifs] = useState<Gif[]>([]);
   const [gifPagination, setGifPagination] = useState<Pagination>({
     total_count: Number.MAX_SAFE_INTEGER,
   } as Pagination);
@@ -24,8 +23,14 @@ export function ThumbnailContainer() {
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   async function fetchGifs() {
+    let getTrendingDto: GetTrendingDto;
     try {
-      const getTrendingDto = await restApi.fetchGifs(nextGifIndex);
+      if (searchKeyword.length) {
+        getTrendingDto = await restApi.fetchGifs(nextGifIndex, searchKeyword);
+      } else {
+        getTrendingDto = await restApi.fetchTrendingGifs(nextGifIndex);
+      }
+
       const gifsSet = new Set([...gifs, ...getTrendingDto.data]);
       setGifs(Array.from(gifsSet));
       setNextGifIndex(nextGifIndex + GIFS_TRENDING_SIZE);
