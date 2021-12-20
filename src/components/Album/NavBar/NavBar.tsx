@@ -8,7 +8,7 @@ import { useAlbumContext } from '../../../contexts/AlbumContext';
 
 export function NavBar() {
   const classes = useStyles();
-  const { setGifs, nextGifIndex, searchKeyword, setSearchKeyword } = useAlbumContext();
+  const { setGifs, searchKeyword, setSearchKeyword } = useAlbumContext();
 
   function handleKeyDown(e: React.KeyboardEvent<HTMLDivElement>) {
     if (e.key !== 'Enter') {
@@ -19,12 +19,14 @@ export function NavBar() {
   }
 
   async function updateGifs() {
+    window.scrollTo(0, 0);
+
     let getTrendingDto: GetTrendingDto;
     try {
       if (searchKeyword.length) {
-        getTrendingDto = await restApi.fetchGifs(nextGifIndex, searchKeyword);
+        getTrendingDto = await restApi.fetchGifs(0, searchKeyword);
       } else {
-        getTrendingDto = await restApi.fetchTrendingGifs(nextGifIndex);
+        getTrendingDto = await restApi.fetchTrendingGifs(0);
       }
 
       setGifs(getTrendingDto.data);
@@ -34,7 +36,7 @@ export function NavBar() {
   }
 
   return (
-    <AppBar position="relative">
+    <AppBar position="sticky">
       <Toolbar className={classes.toolbar}>
         <Typography variant="h6" noWrap>
           Gif Album
