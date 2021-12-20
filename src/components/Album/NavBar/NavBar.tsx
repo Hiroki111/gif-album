@@ -1,4 +1,4 @@
-import { AppBar, InputBase, Toolbar, Typography } from '@material-ui/core';
+import { AppBar, IconButton, InputBase, Toolbar, Typography } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
 
 import { useStyles } from './useStyles';
@@ -10,11 +10,15 @@ export function NavBar() {
   const classes = useStyles();
   const { setGifs, nextGifIndex, searchKeyword, setSearchKeyword } = useAlbumContext();
 
-  async function handleKeyDown(e: React.KeyboardEvent<HTMLDivElement>) {
+  function handleKeyDown(e: React.KeyboardEvent<HTMLDivElement>) {
     if (e.key !== 'Enter') {
       return;
     }
 
+    updateGifs();
+  }
+
+  async function updateGifs() {
     let getTrendingDto: GetTrendingDto;
     try {
       if (searchKeyword.length) {
@@ -36,9 +40,9 @@ export function NavBar() {
           Gif Album
         </Typography>
         <div className={classes.search} onKeyDown={handleKeyDown}>
-          <div className={classes.searchIcon}>
+          <IconButton className={classes.iconButton} onClick={updateGifs} aria-label="search">
             <SearchIcon />
-          </div>
+          </IconButton>
           <InputBase
             placeholder="Search…"
             classes={{

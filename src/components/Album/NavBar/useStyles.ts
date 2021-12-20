@@ -18,22 +18,14 @@ export const useStyles = makeStyles((theme) => ({
       justifyContent: 'space-between',
     },
   },
-  searchIcon: {
-    padding: '0px 16px',
-    height: '100%',
-    position: 'absolute',
-    pointerEvents: 'none',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
+  iconButton: {
+    padding: '10px',
   },
   inputRoot: {
     color: 'inherit',
   },
   inputInput: {
-    padding: '8px 8px 8px 0px',
-    // vertical padding + font size from searchIcon
-    paddingLeft: `calc(1em + 32px)`,
+    padding: '8px',
     transition: theme.transitions.create('width'),
     width: '100%',
   },
