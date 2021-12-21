@@ -1,4 +1,4 @@
-import { fireEvent, render, waitFor } from '@testing-library/react';
+import { screen, fireEvent, render, waitFor } from '@testing-library/react';
 
 import { ThumbnailGrid } from '../ThumbnailGrid';
 import { AlbumContextInterface, AlbumContext } from '../../../../contexts/AlbumContext';
@@ -20,8 +20,8 @@ describe('ThumbnailGrid', () => {
     gif.images.original.url = 'https://original';
     gif.images.downsized_still.url = 'https://downsized_still';
 
-    const { getByTestId } = renderThumbnailGrid(gif, createMockAlbumContextValue());
-    const thumbnailDiv = getByTestId('thumbnail-div');
+    renderThumbnailGrid(gif, createMockAlbumContextValue());
+    const thumbnailDiv = screen.getByTestId('thumbnail-div');
 
     expect(thumbnailDiv).toHaveStyle('background-image: url(https://downsized_still)');
   });
@@ -31,8 +31,8 @@ describe('ThumbnailGrid', () => {
     const contextValue = createMockAlbumContextValue({ setGif });
     const mockGif = createMockGif();
 
-    const { getByTestId } = renderThumbnailGrid(mockGif, contextValue);
-    const thumbnailDiv = getByTestId('thumbnail-div');
+    renderThumbnailGrid(mockGif, contextValue);
+    const thumbnailDiv = screen.getByTestId('thumbnail-div');
     fireEvent.click(thumbnailDiv);
 
     await waitFor(() => expect(setGif).toHaveBeenCalledWith(mockGif));

@@ -1,9 +1,9 @@
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 
 import { GifModal } from '../GifModal';
 import { AlbumContextInterface, AlbumContext } from '../../../../contexts/AlbumContext';
 import { createMockAlbumContextValue } from '../../../../testUtil/mockData/AlbumContext';
-import { createMockGif, mockGif } from '../../../../testUtil/mockData/gif';
+import { createMockGif } from '../../../../testUtil/mockData/gif';
 
 describe('GifModal', () => {
   function renderGifModal(contextValue: AlbumContextInterface) {
@@ -25,8 +25,8 @@ describe('GifModal', () => {
     const gif = createMockGif();
     gif.images.original.url = 'https://expected-url';
     const contextValue = createMockAlbumContextValue({ gif });
-    const { getByRole } = renderGifModal(contextValue);
-    const image = getByRole('img');
+    renderGifModal(contextValue);
+    const image = screen.getByRole('img');
 
     expect(image).toHaveAttribute('src', 'https://expected-url');
   });

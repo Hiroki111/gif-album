@@ -1,5 +1,6 @@
 import { render, waitFor } from '@testing-library/react';
-import { ThumbnailContainer } from '..';
+
+import { ThumbnailContainer } from '../ThumbnailContainer';
 import { AlbumContextInterface, AlbumContext } from '../../../../contexts/AlbumContext';
 import { createMockAlbumContextValue } from '../../../../testUtil/mockData/AlbumContext';
 import { createMockGif } from '../../../../testUtil/mockData/gif';
@@ -42,10 +43,8 @@ describe('ThumbnailContainer', () => {
     }));
     renderThumbnailContainer(contextValue);
 
-    await waitFor(() => {
-      expect(restApi.fetchTrendingGifs).toHaveBeenCalledWith(5);
-      expect(setGifs).toHaveBeenCalledWith([mockGifA, mockGifB, mockGifC, mockGifD]);
-    });
+    await waitFor(() => expect(restApi.fetchTrendingGifs).toHaveBeenCalledWith(5));
+    await waitFor(() => expect(setGifs).toHaveBeenCalledWith([mockGifA, mockGifB, mockGifC, mockGifD]));
   });
 
   it('should fetch gifs with the search keyword, and set the gif list', async () => {
@@ -62,9 +61,7 @@ describe('ThumbnailContainer', () => {
     }));
     renderThumbnailContainer(contextValue);
 
-    await waitFor(() => {
-      expect(restApi.fetchGifs).toHaveBeenCalledWith(1, 'apple');
-      expect(setGifs).toHaveBeenCalledWith([mockGifA, mockGifB, mockGifC, mockGifD]);
-    });
+    await waitFor(() => expect(restApi.fetchGifs).toHaveBeenCalledWith(1, 'apple'));
+    await waitFor(() => expect(setGifs).toHaveBeenCalledWith([mockGifA, mockGifB, mockGifC, mockGifD]));
   });
 });

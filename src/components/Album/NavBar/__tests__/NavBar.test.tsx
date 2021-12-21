@@ -1,4 +1,4 @@
-import { render, fireEvent, waitFor } from '@testing-library/react';
+import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 
 import { NavBar } from '../NavBar';
 import { AlbumContextInterface, AlbumContext } from '../../../../contexts/AlbumContext';
@@ -24,9 +24,9 @@ describe('NavBar', () => {
 
   it('should fetch trending gifs when the search icon is clicked while the search keyword is empty', async () => {
     const contextValue = createMockAlbumContextValue({ searchKeyword: '' });
-    const { getByRole } = renderNavBar(contextValue);
+    renderNavBar(contextValue);
 
-    const button = getByRole('button');
+    const button = screen.getByRole('button');
     fireEvent.click(button);
 
     await waitFor(() => expect(restApi.fetchTrendingGifs).toHaveBeenCalledWith(0));
@@ -34,9 +34,9 @@ describe('NavBar', () => {
 
   it('should fetch gifs with the search keyword when the search icon is clicked', async () => {
     const contextValue = createMockAlbumContextValue({ searchKeyword: 'dog' });
-    const { getByRole } = renderNavBar(contextValue);
+    renderNavBar(contextValue);
 
-    const button = getByRole('button');
+    const button = screen.getByRole('button');
     fireEvent.click(button);
 
     await waitFor(() => expect(restApi.fetchGifs).toHaveBeenCalledWith(0, 'dog'));
@@ -44,9 +44,9 @@ describe('NavBar', () => {
 
   it('should fetch gifs with the search keyword when key down even is fired on the search box', async () => {
     const contextValue = createMockAlbumContextValue({ searchKeyword: 'dog' });
-    const { getByTestId } = renderNavBar(contextValue);
+    renderNavBar(contextValue);
 
-    const searchBox = getByTestId('search-box');
+    const searchBox = screen.getByTestId('search-box');
     fireEvent.keyDown(searchBox, { key: 'Enter' });
 
     await waitFor(() => expect(restApi.fetchGifs).toHaveBeenCalledWith(0, 'dog'));
