@@ -5,7 +5,7 @@ import { AlbumContextInterface, AlbumContext } from '../../../../contexts/AlbumC
 import { createMockAlbumContextValue } from '../../../../testUtil/mockData/AlbumContext';
 import { createMockGif, mockGif } from '../../../../testUtil/mockData/gif';
 
-describe('GifModal.tsx', () => {
+describe('GifModal', () => {
   function renderGifModal(contextValue: AlbumContextInterface) {
     return render(
       <AlbumContext.Provider value={contextValue}>
