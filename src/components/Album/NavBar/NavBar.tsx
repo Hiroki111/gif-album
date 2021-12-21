@@ -41,7 +41,7 @@ export function NavBar() {
         <Typography variant="h6" noWrap>
           Gif Album
         </Typography>
-        <div className={classes.search} onKeyDown={handleKeyDown}>
+        <div className={classes.search} data-testid="search-box" onKeyDown={handleKeyDown}>
           <IconButton className={classes.iconButton} onClick={updateGifs} aria-label="search">
             <SearchIcon />
           </IconButton>

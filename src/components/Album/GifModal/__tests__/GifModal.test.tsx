@@ -16,7 +16,6 @@ describe('GifModal.tsx', () => {
 
   it('should render null if no gif object is provided', () => {
     const contextValue = createMockAlbumContextValue({ gif: null });
-
     const { container } = renderGifModal(contextValue);
 
     expect(container.innerHTML).toHaveLength(0);
@@ -34,7 +33,6 @@ describe('GifModal.tsx', () => {
         },
       }),
     });
-
     const { getByRole } = renderGifModal(contextValue);
     const image = getByRole('img');
 
