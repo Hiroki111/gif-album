@@ -16,6 +16,7 @@ export function ThumbnailGrid({ gif }: Props) {
     <Grid item key={gif.id} xs={12} sm={6} md={4}>
       <Card className={classes.gifCard}>
         <CardMedia
+          data-testid="thumbnail-div"
           className={classes.thumbnail}
           image={gif.images.downsized_still.url}
           title={gif.title}

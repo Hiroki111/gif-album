@@ -5,14 +5,14 @@ import { AlbumContextInterface, AlbumContext } from '../../../../contexts/AlbumC
 import { createMockAlbumContextValue } from '../../../../testUtil/mockData/AlbumContext';
 
 jest.mock('../../../../network/restApi', () => ({
-  fetchTrendingGifs: jest.fn().mockImplementation(() => null),
-  fetchGifs: jest.fn().mockImplementation(() => null),
+  fetchTrendingGifs: jest.fn(),
+  fetchGifs: jest.fn(),
 }));
 
 describe('NavBar', () => {
   const restApi = require('../../../../network/restApi');
-  window.scrollTo = jest.fn().mockImplementation(() => true);
-  window.alert = jest.fn().mockImplementation(() => true);
+  window.scrollTo = jest.fn();
+  window.alert = jest.fn();
 
   function renderNavBar(contextValue: AlbumContextInterface) {
     return render(
