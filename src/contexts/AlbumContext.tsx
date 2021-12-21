@@ -6,7 +6,7 @@ interface Props {
   children: JSX.Element | JSX.Element[];
 }
 
-interface AlbumContextInterface {
+export interface AlbumContextInterface {
   gif: Gif | null;
   gifs: Gif[];
   searchKeyword: string;
