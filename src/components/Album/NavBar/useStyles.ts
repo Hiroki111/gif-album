@@ -7,6 +7,7 @@ export const useStyles = makeStyles((theme) => ({
     },
   },
   search: {
+    boxSizing: 'border-box',
     position: 'relative',
     borderRadius: theme.shape.borderRadius,
     backgroundColor: alpha(theme.palette.common.white, 0.15),
@@ -20,9 +21,15 @@ export const useStyles = makeStyles((theme) => ({
   },
   iconButton: {
     padding: '10px',
+    [theme.breakpoints.down('sm')]: {
+      width: '44px',
+    },
   },
   inputRoot: {
     color: 'inherit',
+    [theme.breakpoints.down('sm')]: {
+      width: 'calc(100% - 44px)',
+    },
   },
   inputInput: {
     padding: '8px',

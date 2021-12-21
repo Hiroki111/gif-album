@@ -20,6 +20,7 @@ export function GifModal() {
             <CloseIcon className={classes.closeIcon} onClick={() => setGif(null)} />
           </Grid>
           <img
+            className={classes.gif}
             src={gif.images.original.url}
             alt={gif.title}
             height={gif.images.original.height}

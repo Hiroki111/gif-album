@@ -10,6 +10,13 @@ export const useStyles = makeStyles((theme) => ({
     width: 'auto',
     backgroundColor: theme.palette.background.paper,
     padding: '16px',
+    [theme.breakpoints.down('sm')]: {
+      maxWidth: '380px',
+    },
+  },
+  gif: {
+    width: '100%',
+    height: 'auto',
   },
   closeIconWrapper: {
     paddingBottom: '16px',
