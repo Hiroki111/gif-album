@@ -1,8 +1,8 @@
 import { render } from '@testing-library/react';
-import { AlbumContext } from '../../../contexts/AlbumContext';
-import { createMockAlbumContextValue } from '../../../testUtil/mockData/AlbumContext';
 
 import { Album } from '../Album';
+import { AlbumContext } from '../../../contexts/AlbumContext';
+import { createMockAlbumContextValue } from '../../../testUtil/mockData/AlbumContext';
 
 describe('Album', () => {
   function renderAlbum() {

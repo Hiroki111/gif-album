@@ -22,17 +22,9 @@ describe('GifModal', () => {
   });
 
   it("should display the selected gif's original URL", () => {
-    const contextValue = createMockAlbumContextValue({
-      gif: createMockGif({
-        images: {
-          ...mockGif.images,
-          original: {
-            ...mockGif.images.original,
-            url: 'https://expected-url',
-          },
-        },
-      }),
-    });
+    const gif = createMockGif();
+    gif.images.original.url = 'https://expected-url';
+    const contextValue = createMockAlbumContextValue({ gif });
     const { getByRole } = renderGifModal(contextValue);
     const image = getByRole('img');
 
