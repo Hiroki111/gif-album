@@ -29,3 +29,7 @@ Runs unit tests
 ### `yarn build`
 
 Builds the app for production to the `build` folder
+
+### `npx serve -s build`
+
+Runs the production-ready app on your local machine (Please run `yarn build` first)
