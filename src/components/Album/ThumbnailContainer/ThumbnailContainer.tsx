@@ -16,7 +16,7 @@ export function ThumbnailContainer() {
     total_count: Number.MAX_SAFE_INTEGER,
   } as Pagination);
   const dataLength = nextGifIndex === 0 ? 0 : nextGifIndex - 1;
-  const hasMore = gifPagination.total_count > gifPagination?.offset;
+  const hasMore = gifPagination?.total_count > gifPagination?.offset;
 
   useEffect(() => {
     fetchGifs();
