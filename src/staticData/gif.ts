@@ -28,4 +28,9 @@ export const IMAGE_TYPES = [
 
 export const RENDITION_NAMES = ['gif', 'mp4', 'webp'] as RenditionKey[];
 
-export const MP4_ONLY_IMAGE_TYPE_SET = new Set(['downsized_small', 'looping', 'preview']) as Set<ImageType>;
+export const MP4_ONLY_IMAGE_TYPE_SET = new Set([
+  'downsized_small',
+  'looping',
+  'original_mp4',
+  'preview',
+]) as Set<ImageType>;
