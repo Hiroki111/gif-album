@@ -21,7 +21,7 @@ describe('GifModal', () => {
     expect(container.innerHTML).toHaveLength(0);
   });
 
-  it("should display the selected gif's original URL", () => {
+  it("should display the selected gif's original URL by default", () => {
     const gif = createMockGif();
     gif.images.original.url = 'https://expected-url';
     const contextValue = createMockAlbumContextValue({ gif });
